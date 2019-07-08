@@ -4,7 +4,9 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+    <div class="alert alert-warning" role="alert">
+        <h1>Detalhes da Equipa:</h1> @Html.DisplayFor(model => model.Nome)
+    </div>
 
 <div>
     <hr />
@@ -12,7 +14,8 @@
 
 
         <dt>
-            @Html.DisplayNameFor(model => model.Nome)
+            Nome da Equipa:
+            @*Html.DisplayNameFor(model => model.Nome)*@
         </dt>
 
         <dd>
@@ -20,7 +23,9 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DataFundacao)
+            Data de Fundação:
+
+            @*Html.DisplayNameFor(model => model.DataFundacao)*@
         </dt>
 
         <dd>
@@ -28,32 +33,51 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Logo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Logo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Fundador)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Fundador)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Nacionalidade)
+            Sede:
+            @*Html.DisplayNameFor(model => model.Nacionalidade)*@
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Nacionalidade)
         </dd>
 
+
+        <dt>
+            Fundador da Equipa:
+            @*Html.DisplayNameFor(model => model.Fundador)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fundador)
+        </dd>
+
+
+        <dt>
+            Fotografia da Equipa:
+            @*Html.DisplayNameFor(model => model.Logo)*@
+        </dt>
+
+        <dd>
+            <a href="~/Imagens/@Model.Logo" target="_parent">
+                <img src="~/Imagens/@Model.Logo" class="rounded" height="100" width="" />
+            </a>
+        </dd>
+
+
+
     </dl>
 </div>
+<p>
+    @Html.ActionLink("Editar Piloto", "Edit", new { id = Model.IdEquipa }) |
+    @Html.ActionLink("Eliminar Equipa", "Delete", new { id = Model.IdEquipa }) |
+    @Html.ActionLink("Voltar para a lista de Equipas", "Index")
+</p>
+
 <div style="clear: left">
+    <div class="alert alert-info" role="alert">
+
+        <font style='font-weight:bold;'> Pilotos da Equipa @Html.DisplayFor(model => model.Nome)</font>
+    </div>
     @foreach (var pilotos in Model.ListaDePilotos)
     {
         <div class="col-lg-4" style=" text-align: center; padding-bottom:30px;">
@@ -65,7 +89,4 @@
 
     }
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdEquipa }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

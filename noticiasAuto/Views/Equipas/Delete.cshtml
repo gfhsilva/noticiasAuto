@@ -4,61 +4,75 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+    <div class="alert alert-danger" role="alert" style='font-weight:bold;'>
+        Deseja mesmo eliminar a equipa  @Html.DisplayFor(model => model.Nome)?
+    </div>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Nome:
+            </dt>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Equipas</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Nome)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
+            <dt>
+                Data de Fundação:
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DataFundacao)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DataFundacao)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DataFundacao)
-        </dd>
+            <dt>
+                    Sede:
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Logo)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Nacionalidade)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Logo)
-        </dd>
+            <dt>
+                Fundador da equipa:
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Fundador)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Fundador)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Fundador)
-        </dd>
+            <dt>
+                Logotipo:
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Nacionalidade)
-        </dt>
+            <dd>
+                <a href="~/Imagens/@Model.Logo" target="_blank">
+                    <img src="~/Imagens/@Model.Logo" class="rounded" height="150" width="200" />
+                </a>
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nacionalidade)
-        </dd>
+        </dl>
 
-    </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-danger" onclick="javascript:return ConfirmMessageBox();" @Html.DisplayFor(model => model.Nome) ? />               
+        @Html.ActionLink("Voltar para a Lista de Equipas", "Index")
+    </div>
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
-</div>
+            <script>
+        function ConfirmMessageBox() {
+            var result = confirm("Pretende mesmo eliminar a equipa @Html.DisplayFor(model => model.Nome)?");
+            if (result) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+/**/</script>
+        }
+    </div>
